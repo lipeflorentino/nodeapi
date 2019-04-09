@@ -26,7 +26,16 @@ User.getAllUsers = function getAllUsers(result) {
 };
 
 User.insertUser = function insertUser(request, result){
-    pool.query("INSERT INTO Users (nome, email, assunto, mensagem, data_envio) VALUES (?)", [request.body], function(error, res){
+    
+    const nome = request.nome,
+    email = request.email,
+    assunto = request.assunto,
+    mensagem = request.mensagem,
+    data_envio = request.data_envio; 
+    
+    console.log('nome: ' + nome + '----------------');
+    const sql = "INSERT INTO Users (nome, email, assunto, mensagem, data_envio) VALUES (" + "'" + nome + "'" + ',' + "'" + email + "'" + ',' + "'" + assunto + "'" + ',' + "'" + mensagem + "'" + ',' + "'" + data_envio + "'" + ")";
+    pool.query(sql, function(error, res){
         if (error){ 
             console.log("error: ", error);
             result(null, error);

@@ -12,7 +12,6 @@ exports.listarUsers = function(req, res) {
     });
 };
 exports.inserirUser = function(req, res){
-    
     User.insertUser(req.body, function(err, user){
         if(err)
             return res.send(err);
