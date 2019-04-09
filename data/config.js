@@ -11,5 +11,7 @@ const config = {
 // Create a MySQL pool
 const pool = mysql.createPool(config);
 
+console.log('conectado ao BD!');
+
 // Export the pool
 module.exports = pool;

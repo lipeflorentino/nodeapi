@@ -1,5 +1,9 @@
 // Load the MySQL pool connection
 const pool = require('../data/config');
+// Importa o controller
+const appController = require('../controllers/appController');
+
+console.log('cheguei na rota!');
 
 const router = app => {
     app.get('/', (request, response) => {
@@ -9,42 +13,11 @@ const router = app => {
     });
     
     // Display all users
-    app.get('/users', (request, response) => {
-        pool.query('SELECT * FROM Users', (error, result) => {
-            if (error) throw error;
-     
-            response.send(result);
-        });
-    });
-    // Display a single user by ID
-    app.get('/users/:id', (request, response) => {
-        const id = request.params.id;
-     
-        pool.query('SELECT * FROM Users WHERE id = ?', id, (error, result) => {
-            if (error) throw error;
-     
-            response.send(result);
-        });
-    });
+    app.route('/users').get(appController.listarUsers);
     // Add a new user
-    app.post('/users', (request, response) => {
-        console.log('request: '+request.body);
-        pool.query("INSERT INTO Users (nome, email, assunto, mensagem, data_envio) VALUES (?)", request.body, (error, result) => {
-            if (error) throw error;
-            response.status(201).send(`User added with ID: ${result.insertId}`);
-        });
-    });
+    app.route('/users').post(appController.inserirUser);
     // Delete a user
-    app.delete('/users/:id', (request, response) => {
-        const id = request.params.id;
-     
-        pool.query('DELETE FROM Users WHERE id = ?', id, (error, result) => {
-            if (error) throw error;
-     
-            response.send('User deleted.');
-        });
-    });
-    
+    app.route('/users/:id').delete(appController.deletarUser);
 }
 
 
