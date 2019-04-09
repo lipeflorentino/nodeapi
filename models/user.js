@@ -25,7 +25,7 @@ User.getAllUsers = function getAllUsers(result) {
     });
 };
 
-User.insertUser = function insertUser(request, result){
+User.insertUser = function insertUser(request){
     
     const nome = request.nome,
     email = request.email,
@@ -37,12 +37,10 @@ User.insertUser = function insertUser(request, result){
     const sql = "INSERT INTO Users (nome, email, assunto, mensagem, data_envio) VALUES (" + "'" + nome + "'" + ',' + "'" + email + "'" + ',' + "'" + assunto + "'" + ',' + "'" + mensagem + "'" + ',' + "'" + data_envio + "'" + ")";
     pool.query(sql, function(error, res){
         if (error){ 
-            console.log("error: ", error);
-            result(null, error);
+            return console.log("error: ", error);
         }
         else{
-            console.log('result: ', res);  
-            result('usuario adcionado: ' + res);
+            return console.log('result: ', res);  
         }
     });    
 };

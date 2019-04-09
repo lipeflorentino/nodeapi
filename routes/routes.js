@@ -15,7 +15,7 @@ const router = app => {
     // Display all users
     app.route('/users').get(appController.listarUsers);
     // Add a new user
-    app.route('/users').post(appController.inserirUser);
+    app.route('/users').post(appController.enviarEmail);
     // Delete a user
     app.route('/users/:id').delete(appController.deletarUser);
 }
