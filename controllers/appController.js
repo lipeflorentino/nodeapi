@@ -1,5 +1,7 @@
 //importando o model
 const User = require('../models/user.js');
+require('dotenv').config();
+const nodemailer = require("nodemailer");
 
 console.log('criei o controller!');
 
@@ -16,12 +18,10 @@ exports.enviarEmail = function(request, res){
     inserirUser(request);
     console.log('Preparando envio de email...');
     const req = request.body;
-    require('dotenv').config();
     const $usuario = process.env.MY_USER;
     const $senha = process.env.PASSWORD;
     const $subject = req.assunto;
     const $text = req.mensagem;
-    const nodemailer = require("nodemailer");
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         port: 465,
