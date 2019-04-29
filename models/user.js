@@ -12,19 +12,6 @@ const User = function(user){
 
 console.log('criei o model!');
 
-User.getAllUsers = function getAllUsers(result) {
-    pool.query('SELECT * FROM Users', (error, res) => {
-        if (error) {
-            console.log("error: ", error);
-            result(null, error);    
-        }
-        else {
-            console.log('MODEL RESULTS : ', res);  
-            result(null, res);
-        }
-    });
-};
-
 User.insertUser = function insertUser(request){
     
     const nome = request.nome,
@@ -38,6 +25,7 @@ User.insertUser = function insertUser(request){
     pool.query(sql, function(error, res){
         if (error){ 
             return console.log("error: ", error);
+            
         }
         else{
             return console.log('result: ', res);  

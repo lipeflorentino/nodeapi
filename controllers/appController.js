@@ -5,14 +5,6 @@ const nodemailer = require("nodemailer");
 
 console.log('criei o controller!');
 
-exports.listarUsers = function(req, res) {
-    User.getAllUsers(function(err, user) {
-        if (err)
-          return res.send(err);
-          console.log('resultado: ', user);
-        res.send(user);
-    });
-};
 exports.enviarEmail = function(request, res){
     console.log('Inserindo usuario...');
     inserirUser(request);
@@ -30,7 +22,7 @@ exports.enviarEmail = function(request, res){
             pass: $senha
         }
     });
-    const $destinatario = 'lipeflorentino2@gmail.com';
+    const $destinatario = 'bigsolucoesdigitais@gmail.com';
     const mailOptions = {
         from: 'Contato@bigsolucoes.com.br',
         to: $destinatario,
@@ -43,15 +35,18 @@ exports.enviarEmail = function(request, res){
             res.send(error);
         } else {
             console.log('Email enviado: ' + info.response);
+            res.set('X-Powered-By', 'PHP/7.1.7');
             res.send(info);
         }
     });    
 };
-function inserirUser(req){
+function inserirUser(req, res){
     User.insertUser(req.body, function(err, user){
         if(err) 
             return console.log('erro: ' + err);
         else 
+            res.set('X-Powered-By', 'PHP/7.1.7');
+            res.send(user);
             return console.log('resultado: ' + user);
     });    
 };
