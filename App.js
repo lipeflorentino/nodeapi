@@ -5,12 +5,13 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
 const cors = require('cors');
 const app = express();
-
+const helmet = require('helmet');
 // Use Node.js body parsing middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true,
 }));
+app.use(helmet());
 // Set up a whitelist and check against it:
 const whitelist = ['http://bigweb-lipeflorentino.c9users.io:8081/', 'http://example2.com'];
 const corsOptions = {

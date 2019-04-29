@@ -32,22 +32,19 @@ exports.enviarEmail = function(request, res){
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
-            res.send(error);
+            return res.json({message: "Ocorreu um erro, tente mais tarde"});
         } else {
             console.log('Email enviado: ' + info.response);
-            res.set('X-Powered-By', 'PHP/7.1.7');
-            res.send(info);
+            return res.json({message: "E-mail enviado com sucesso!"});
         }
     });    
 };
 function inserirUser(req, res){
     User.insertUser(req.body, function(err, user){
         if(err) 
-            return console.log('erro: ' + err);
+            return res.json({message: "Ocorreu um erro, tente mais tarde"});
         else 
-            res.set('X-Powered-By', 'PHP/7.1.7');
-            res.send(user);
-            return console.log('resultado: ' + user);
+            return res.json({message: "usuario criado com sucesso!"});
     });    
 };
 exports.deletarUser = function(req, res){
