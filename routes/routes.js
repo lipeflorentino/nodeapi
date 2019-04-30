@@ -6,14 +6,13 @@ const appController = require('../controllers/appController');
 console.log('cheguei na rota!');
 
 const router = app => {
-    app.get('/', (request, response) => {
-        response.send({
-            message: 'Node.js and Express REST API'
+    app.get('/', function (req, res, next) {
+        res.status(200).send({
+            title: "Node Express API",
+            version: "0.0.1"
         });
     });
     
-    // Display all users
-    app.route('/users').get(appController.listarUsers);
     // Add a new user
     app.route('/users').post(appController.enviarEmail);
     // Delete a user
