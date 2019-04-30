@@ -5,12 +5,19 @@ const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
 const cors = require('cors');
 const app = express();
+const helmet = require('helmet');
+const jwt    = require('jsonwebtoken');
+const config = require('./data/config');
 
+app.set('superSecret', config.secret); 
 // Use Node.js body parsing middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true,
 }));
+app.use(helmet());
+app.disable('x-powered-by');
+
 // Set up a whitelist and check against it:
 const whitelist = ['http://bigweb-lipeflorentino.c9users.io:8081/', 'http://example2.com'];
 const corsOptions = {
