@@ -6,10 +6,8 @@ const routes = require('./routes/routes');
 const cors = require('cors');
 const app = express();
 const helmet = require('helmet');
-const jwt    = require('jsonwebtoken');
 const config = require('./data/config');
 
-app.set('superSecret', config.secret); 
 // Use Node.js body parsing middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
