@@ -8,6 +8,7 @@ const config = {
     database: 'u481485510_bigdb',
 };
 
+const secret = 'asd123jlkj132lijh';
 // Create a MySQL pool
 const pool = mysql.createPool(config);
 
