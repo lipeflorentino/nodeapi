@@ -6,7 +6,6 @@ const routes = require('./routes/routes');
 const cors = require('cors');
 const app = express();
 const helmet = require('helmet');
-const config = require('./data/config');
 
 // Use Node.js body parsing middleware
 app.use(bodyParser.json());
@@ -17,19 +16,22 @@ app.use(helmet());
 app.disable('x-powered-by');
 
 // Set up a whitelist and check against it:
-const whitelist = ['http://bigweb-lipeflorentino.c9users.io:8081/', 'http://bigweb-lipeflorentino.c9users.io:8080/', 'http://example2.com'];
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback('Origin allowed by CORS', true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  }
-};
+const whitelist = ['http://bigempreendimentos.com.br'];
 
 // Then pass them to cors:
-app.use(cors());
+app.use(cors({
+  origin: function(origin, callback){
+    // allow requests with no origin 
+    // (like mobile apps or curl requests)
+    if(!origin) return callback(null, true);
+    if(whitelist.indexOf(origin) === -1){
+      var msg = 'The CORS policy for this site does not ' +
+                'allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  }
+}));
 
 routes(app);
 
