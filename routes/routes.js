@@ -1,12 +1,9 @@
 // Importa o controller
 const appController = require('../controllers/appController');
-const config = require('../data/config');
+require('dotenv').config();
 console.log('cheguei na rota!');
-
-
-
+const $secret = process.env.SECRET;
 const router = app => {
-    app.set('superSecret', config.secret); 
     // middleware para validar o Token
     app.use((req, res, next) => {
       // Aqui vamos verificar o header da requisição, os parametros e o corpo da requisição, procurando o token
@@ -14,16 +11,20 @@ const router = app => {
     
       // Se o token existir
       if (token) {
-        console.log('token: ' + token);
         // Verificamos se o token está batendo com a nossa Secret
-        if(token !== config.secret){
+        if(token != $secret){
             return res.json({
               success: false,
               message: 'A autenticação com o token falhou.'
             })
           } else {
+             next()
             // Se o token estiver válido, então salvamos ele e liberamos o acesso, fazemos o trabalho do porteiro de um prédio aqui.
-            next()
+            return res.json({
+              success: true,
+              message: 'A autenticação foi concluida com sucesso!'
+            });
+           
           }
       } else {
         // Se quem requisitou não informou o token, devolvemos um erro para ele.

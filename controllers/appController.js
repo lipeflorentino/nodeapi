@@ -13,6 +13,8 @@ exports.enviarEmail = function(request, res){
     const $usuario = process.env.MY_USER;
     const $senha = process.env.PASSWORD;
     const $subject = req.assunto;
+    const $email = req.email;
+    const $nome = req.nome;
     const $text = req.mensagem;
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -24,10 +26,10 @@ exports.enviarEmail = function(request, res){
     });
     const $destinatario = 'bigsolucoesdigitais@gmail.com';
     const mailOptions = {
-        from: 'Contato@bigsolucoes.com.br',
+        from: request.body.email,
         to: $destinatario,
-        subject: $subject,
-        text: $text
+        subject: 'Assunto: ' + $subject,
+        text: 'Enviado por: ' + $nome + '\n' + 'Mensagem: ' + $text
     };
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
@@ -35,7 +37,6 @@ exports.enviarEmail = function(request, res){
             res.send(error);
         } else {
             console.log('Email enviado: ' + info.response);
-            res.set('X-Powered-By', 'PHP/7.1.7');
             res.send(info);
         }
     });    
@@ -45,7 +46,6 @@ function inserirUser(req, res){
         if(err) 
             return console.log('erro: ' + err);
         else 
-            res.set('X-Powered-By', 'PHP/7.1.7');
             res.send(user);
             return console.log('resultado: ' + user);
     });    
