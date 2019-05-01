@@ -15,6 +15,8 @@ exports.enviarEmail = function(request, res){
     const $subject = req.assunto;
     const $email = req.email;
     const $nome = req.nome;
+    const $servico = req.servico;
+    const $tipo_servico = req.tipo_servico;
     const $text = req.mensagem;
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -29,7 +31,7 @@ exports.enviarEmail = function(request, res){
         from: request.body.email,
         to: $destinatario,
         subject: 'Assunto: ' + $subject,
-        text: 'Enviado por: ' + $nome + '\n' + 'Mensagem: ' + $text
+        text: 'Enviado por: ' + $nome + ' <' + $email + '>' + '\n' + 'Mensagem: ' + $text + '\n' + 'Serviço: ' + $servico + ' Tipo: ' + $tipo_servico
     };
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
