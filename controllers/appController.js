@@ -36,7 +36,7 @@ exports.enviarEmail = function(request, res){
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
             console.log(error);
-            return res.json({message: "Ocorreu um erro, tente mais tarde", success: false});
+            return res.json({message: "Ocorreu um erro no envio, tente mais tarde", success: false});
         } else {
             console.log('Email enviado: ' + info.response);
             return res.json({message: "E-mail enviado com sucesso!", success: true});
@@ -46,7 +46,7 @@ exports.enviarEmail = function(request, res){
 function inserirUser(req, res){
     User.insertUser(req.body, function(err, user){
         if(err) 
-            return res.json({message: "Ocorreu um erro, tente mais tarde", success: false});
+            return res.json({message: "Ocorreu um erro na inserção, tente mais tarde", success: false});
         else 
             return res.json({message: "usuario criado com sucesso!", success: true});
     });    
