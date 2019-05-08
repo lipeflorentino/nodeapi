@@ -126,7 +126,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/express-serverless-app/prod/1557330053325-2019-05-08T15:40:53.325Z/express-serverless-app.zip"
+                "S3Key": "serverless/express-serverless-app/prod/1557331206358-2019-05-08T16:00:06.358Z/express-serverless-app.zip"
               },
               "FunctionName": "express-serverless-app-prod-app",
               "Handler": "handler.run",
@@ -145,14 +145,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersionOtNIoaa67LTdrCiDGQyzn6kVmj86y5hgrvh1KpoPSMY": {
+          "AppLambdaVersion6ptwvL7hNkvVyzvAyHiavtyvaJxkCs6iO6EwchrkGI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "PcWrU1iZ1BtBKuWNensrj40BOsYNqfMAi89+e1XDx3U="
+              "CodeSha256": "QaW9nv1WNdc86VTJ2Wm7EUTi33qsoi3vaNknYCc1iAU="
             }
           },
           "ApiGatewayRestApi": {
@@ -367,7 +367,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1557330044578": {
+          "ApiGatewayDeployment1557331197877": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -439,7 +439,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionOtNIoaa67LTdrCiDGQyzn6kVmj86y5hgrvh1KpoPSMY"
+              "Ref": "AppLambdaVersion6ptwvL7hNkvVyzvAyHiavtyvaJxkCs6iO6EwchrkGI"
             }
           },
           "ServiceEndpoint": {
@@ -562,7 +562,7 @@
     "artifact": "/home/ubuntu/workspace/bigapi/.serverless/express-serverless-app.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/express-serverless-app/prod/1557330053325-2019-05-08T15:40:53.325Z",
+    "artifactDirectoryName": "serverless/express-serverless-app/prod/1557331206358-2019-05-08T16:00:06.358Z",
     "artifact": "express-serverless-app.zip"
   }
 }
