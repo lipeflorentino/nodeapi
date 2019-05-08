@@ -19,7 +19,7 @@
     "AppLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/express-serverless-app-v1-app"
+        "LogGroupName": "/aws/lambda/express-serverless-app-prod-app"
       }
     },
     "IamRoleLambdaExecution": {
@@ -47,7 +47,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "v1",
+                  "prod",
                   "express-serverless-app",
                   "lambda"
                 ]
@@ -63,7 +63,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/express-serverless-app-v1-app:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/express-serverless-app-prod-app:*"
                     }
                   ]
                 },
@@ -74,7 +74,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/express-serverless-app-v1-app:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/express-serverless-app-prod-app:*:*"
                     }
                   ]
                 }
@@ -88,7 +88,7 @@
             "-",
             [
               "express-serverless-app",
-              "v1",
+              "prod",
               "us-east-1",
               "lambdaRole"
             ]
@@ -103,9 +103,9 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/express-serverless-app/v1/1557328792523-2019-05-08T15:19:52.523Z/express-serverless-app.zip"
+          "S3Key": "serverless/express-serverless-app/prod/1557329192562-2019-05-08T15:26:32.562Z/express-serverless-app.zip"
         },
-        "FunctionName": "express-serverless-app-v1-app",
+        "FunctionName": "express-serverless-app-prod-app",
         "Handler": "handler.run",
         "MemorySize": 512,
         "Role": {
@@ -122,20 +122,20 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "AppLambdaVersionJhuSIt9zDwgsT52Mry7iWueRZ1ujyuP4bpdTB8mkcc": {
+    "AppLambdaVersionnEVMmYBvweI7JlfJHW6JpZkjKcOVvUc6GHj19Vk3Do": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "kGrsh2yGPUnMdZ5dC+kNRmruR3Ma9PKO++z36T/O3GU="
+        "CodeSha256": "cCO15hgyqwO5YlDYil9wFxaK9+ev4avjuIeE1R5Hea8="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "v1-express-serverless-app",
+        "Name": "prod-express-serverless-app",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -344,13 +344,13 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1557328783733": {
+    "ApiGatewayDeployment1557329183906": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         },
-        "StageName": "v1"
+        "StageName": "prod"
       },
       "DependsOn": [
         "ApiGatewayMethodOptions",
@@ -416,7 +416,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionJhuSIt9zDwgsT52Mry7iWueRZ1ujyuP4bpdTB8mkcc"
+        "Ref": "AppLambdaVersionnEVMmYBvweI7JlfJHW6JpZkjKcOVvUc6GHj19Vk3Do"
       }
     },
     "ServiceEndpoint": {
@@ -433,7 +433,7 @@
             {
               "Ref": "AWS::URLSuffix"
             },
-            "/v1"
+            "/prod"
           ]
         ]
       }

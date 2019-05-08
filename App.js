@@ -35,9 +35,4 @@ app.use(cors({
 
 routes(app);
 
-// Start the server
-const server = app.listen(port, (error) => {
-    if (error) return console.log(`Error: ${error}`);
- 
-    console.log(`Server started and listening on port ${server.address().port}`);
-});
+module.exports = app;
