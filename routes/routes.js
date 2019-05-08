@@ -7,8 +7,8 @@ const router = app => {
     // middleware para validar o Token
     app.use((req, res, next) => {
       // Aqui vamos verificar o header da requisição, os parametros e o corpo da requisição, procurando o token
-      var token = req.body.token || req.query.token || req.headers['x-amz-security-token']
-    
+      //var token = req.body.token || req.query.token || req.headers['x-amz-security-token']
+      var token = 'asd123jlkj132lijhaskdhtu174ncua';
       // Se o token existir
       if (token) {
         // Verificamos se o token está batendo com a nossa Secret
