@@ -4,7 +4,7 @@
   "description": "api node com express",
   "main": "index.js",
   "scripts": {
-    "start": "node App.js"
+    "start": "node app.local.js"
   },
   "author": "lipeflorentino",
   "license": "ISC",

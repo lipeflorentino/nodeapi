@@ -1,6 +1,5 @@
 // Require packages and set the port
 const express = require('express');
-const port = 8080;
 const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
 const cors = require('cors');
