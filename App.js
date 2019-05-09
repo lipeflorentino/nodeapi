@@ -1,6 +1,6 @@
 // Require packages and set the port
 const express = require('express');
-const port = 3000;
+const port = 8080;
 const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
 const cors = require('cors');
@@ -17,8 +17,7 @@ app.use(helmet());
 app.disable('x-powered-by');
 
 // Set up a whitelist and check against it:
-const whitelist = ['https://bigempreendimentos.com.br', 'https://www.bigempreendimentos.com.br', 'http://bigempreendimentos.com.br', 'http://www.bigempreendimentos.com.br'];
-
+const whitelist = ['https://bigweb-lipeflorentino.c9users.io:8081', 'http://bigweb-lipeflorentino.c9users.io:8080/'];
 // Then pass them to cors:
 app.use(cors({
   origin: function(origin, callback){
@@ -40,5 +39,5 @@ routes(app);
 const server = app.listen(port, (error) => {
     if (error) return console.log(`Error: ${error}`);
  
-    console.log('Server started and listening on port ${server.address().port}');
+    console.log(`Server started and listening on port ${server.address().port}`);
 });
