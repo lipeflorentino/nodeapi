@@ -1,10 +1,12 @@
 // Require packages and set the port
 const express = require('express');
+const port = 3000;
 const bodyParser = require('body-parser');
 const routes = require('./routes/routes');
 const cors = require('cors');
 const app = express();
 const helmet = require('helmet');
+const config = require('./data/config');
 
 // Use Node.js body parsing middleware
 app.use(bodyParser.json());
@@ -34,4 +36,9 @@ app.use(cors({
 
 routes(app);
 
-module.exports = app;
+// Start the server
+const server = app.listen(port, (error) => {
+    if (error) return console.log(`Error: ${error}`);
+ 
+    console.log('Server started and listening on port ${server.address().port}');
+});
