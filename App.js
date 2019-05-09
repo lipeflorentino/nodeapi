@@ -6,11 +6,6 @@ const routes = require('./routes/routes');
 const cors = require('cors');
 const app = express();
 const helmet = require('helmet');
-<<<<<<< HEAD
-const config = require('./data/config');
-=======
-const port = 8080;
->>>>>>> api
 
 // Use Node.js body parsing middleware
 app.use(bodyParser.json());
