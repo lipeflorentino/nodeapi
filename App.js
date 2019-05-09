@@ -6,7 +6,11 @@ const routes = require('./routes/routes');
 const cors = require('cors');
 const app = express();
 const helmet = require('helmet');
+<<<<<<< HEAD
 const config = require('./data/config');
+=======
+const port = 8080;
+>>>>>>> api
 
 // Use Node.js body parsing middleware
 app.use(bodyParser.json());
@@ -17,7 +21,8 @@ app.use(helmet());
 app.disable('x-powered-by');
 
 // Set up a whitelist and check against it:
-const whitelist = ['https://bigweb-lipeflorentino.c9users.io:8081', 'http://bigweb-lipeflorentino.c9users.io:8080/'];
+const whitelist = ['https://bigweb-lipeflorentino.c9users.io:8081', 'https://bigempreendimentos.com.br', 'https://www.bigempreendimentos.com.br', 'http://bigempreendimentos.com.br', 'http://www.bigempreendimentos.com.br'];
+
 // Then pass them to cors:
 app.use(cors({
   origin: function(origin, callback){
@@ -38,6 +43,5 @@ routes(app);
 // Start the server
 const server = app.listen(port, (error) => {
     if (error) return console.log(`Error: ${error}`);
- 
     console.log(`Server started and listening on port ${server.address().port}`);
 });
