@@ -16,7 +16,7 @@ app.use(helmet());
 app.disable('x-powered-by');
 
 // Set up a whitelist and check against it:
-const whitelist = ['https://bigweb-lipeflorentino.c9users.io:8081', 'https://bigempreendimentos.com.br', 'https://www.bigempreendimentos.com.br', 'http://bigempreendimentos.com.br', 'http://www.bigempreendimentos.com.br'];
+const whitelist = ['https://bigweb-lipeflorentino.c9users.io:8080', 'https://bigempreendimentos.com.br', 'https://www.bigempreendimentos.com.br', 'http://bigempreendimentos.com.br', 'http://www.bigempreendimentos.com.br'];
 
 // Then pass them to cors:
 app.use(cors({
